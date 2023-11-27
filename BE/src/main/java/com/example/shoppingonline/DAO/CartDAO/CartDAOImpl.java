@@ -6,6 +6,7 @@ import com.example.shoppingonline.Model.Order.Item;
 import com.example.shoppingonline.Model.Product.Product;
 import com.example.shoppingonline.Model.User.Customer;
 import com.example.shoppingonline.Repository.CartRepository;
+import com.example.shoppingonline.Repository.ItemRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,6 +18,8 @@ public class CartDAOImpl implements CartDAO {
 	@Autowired
 	private CartRepository cartRepository;
 
+	@Autowired
+	private ItemRepository itemRepository;
 
 	@Override
 	public Cart clearCart(int cartId) {
@@ -34,8 +37,9 @@ public class CartDAOImpl implements CartDAO {
 	@Override
 	public Cart addCartItem(int cartId, Item item) {
 		Cart cart = cartRepository.findById(cartId).orElse(null);
+		Item itemExist = itemRepository.findByProduct_IdAndCart_Id(item.getProduct().getId(), cartId);
 
-		if (cart != null) {
+		if (cart != null && itemExist != null) {
 			Product product = item.getProduct();
 			int quantity = item.getQuantity();
 			double itemAmount = product.getPrice() * quantity;
