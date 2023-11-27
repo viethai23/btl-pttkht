@@ -39,15 +39,6 @@ public class PaymentDAOImpl implements PaymentDAO {
 	}
 
 	@Override
-	public Payment addPayment(Order o, Payment p) {
-		p.setStatus("Pending");
-		p = paymentRepository.save(p);
-		o.setPayment(p);
-		orderRepository.save(o);
-		return p;
-	}
-
-	@Override
 	public boolean processPayment(Payment p) {
 		p.setStatus("Successful");
 		paymentRepository.save(p);

@@ -41,4 +41,9 @@ public class CartController {
     ) {
         return cartDAO.updateQuantity(cartId, itemId, quantity);
     }
+
+    @GetMapping("/createCart/{customerId}")
+    public Cart createCart(@PathVariable int customerId) {
+        return cartDAO.createCart(customerId);
+    }
 }

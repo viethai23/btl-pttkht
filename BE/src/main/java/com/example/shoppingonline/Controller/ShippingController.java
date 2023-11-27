@@ -26,9 +26,4 @@ public class ShippingController {
     public boolean cancelShipping(@RequestBody Shipping shipping) {
         return shippingDAO.cancelShipping(shipping);
     }
-
-    @PostMapping("/addShipping")
-    public Shipping addShipping(@RequestBody Order order, @RequestBody Shipping shipping) {
-        return shippingDAO.addShipping(order, shipping);
-    }
 }

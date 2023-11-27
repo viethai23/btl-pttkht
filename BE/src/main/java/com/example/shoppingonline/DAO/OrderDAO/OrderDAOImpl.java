@@ -20,19 +20,9 @@ public class OrderDAOImpl implements OrderDAO {
 	private OrderRepository orderRepository;
 
 	@Override
-	public Order placeOrder(Customer cus, Cart cart) {
-		Order order = new Order();
-		order.setCustomer(cus);
-		order.setCart(cart);
-		order.setOrderDate(new Date());
-		order.setStatus("Placed");
-
-		return orderRepository.save(order);
-	}
-
-	@Override
 	public Order confirmOrder(Order order) {
-		order.setStatus("Confirmed");
+		order.getCart().setStatus("ordered");
+		order.setStatus("confirmed");
 		return orderRepository.save(order);
 	}
 

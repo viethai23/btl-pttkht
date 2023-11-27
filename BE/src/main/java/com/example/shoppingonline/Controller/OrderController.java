@@ -19,11 +19,6 @@ public class OrderController {
     @Autowired
     private OrderDAO orderDAO;
 
-    @PostMapping("/place-order")
-    public Order placeOrder(@RequestBody PlaceOrderRequest request) {
-        return orderDAO.placeOrder(request.getCustomer(), request.getCart());
-    }
-
     @PostMapping("/confirm-order")
     public Order confirmOrder(@RequestBody Order order) {
         return orderDAO.confirmOrder(order);
@@ -67,11 +62,5 @@ public class OrderController {
     @GetMapping("/cart/{orderId}")
     public Cart getCart(@PathVariable int orderId) {
         return orderDAO.getCart(orderId);
-    }
-
-    @Data
-    static class PlaceOrderRequest {
-        private Customer customer;
-        private Cart cart;
     }
 }

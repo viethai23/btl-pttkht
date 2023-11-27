@@ -35,14 +35,4 @@ public class ShippingDAOImpl implements ShippingDAO {
 		shippingRepository.delete(s);
 		return true;
 	}
-
-	@Override
-	public Shipping addShipping(Order o, Shipping s) {
-		s.setAmount(calculateCost(s));
-		s.setStatus("Pending");
-		s = shippingRepository.save(s);
-		o.setShipping(s);
-		orderRepository.save(o);
-		return s;
-	}
 }

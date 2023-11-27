@@ -8,5 +8,4 @@ public interface ShippingDAO {
 	double calculateCost(Shipping s);
 
 	boolean cancelShipping(Shipping s);
-	Shipping addShipping(Order o, Shipping s);
 }

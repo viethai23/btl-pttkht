@@ -11,7 +11,6 @@ import java.util.List;
 
 public interface OrderDAO {
 
-	Order placeOrder(Customer cus, Cart cart);
 	Order confirmOrder(Order order);
 
 	List<Order> getCustomerOrder(Customer c);

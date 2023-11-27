@@ -7,7 +7,6 @@ import com.example.shoppingonline.Model.Product.Product;
 import java.util.List;
 
 public interface ProductDAO {
-
 	List<Product> getListProduct();
 
 	List<Product> getProductByName(String s);

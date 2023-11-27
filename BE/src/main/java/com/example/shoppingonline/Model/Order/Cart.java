@@ -33,4 +33,7 @@ public class Cart {
 
 	@Column(name = "total_item")
 	private int totalItem;
+
+	@Column(name = "status")
+	private String status;
 }

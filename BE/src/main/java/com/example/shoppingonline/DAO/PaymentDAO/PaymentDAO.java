@@ -10,6 +10,5 @@ public interface PaymentDAO {
 	double calculateCost(Cart c, Shipping sh);
 
 	boolean refundPayment(int paymentId);
-	Payment addPayment(Order o, Payment p);
 	boolean processPayment(Payment p);
 }

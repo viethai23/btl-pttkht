@@ -29,11 +29,6 @@ public class PaymentController {
         return paymentDAO.refundPayment(paymentId);
     }
 
-    @PostMapping("/addPayment")
-    public Payment addPayment(@RequestBody Order order, @RequestBody Payment payment) {
-        return paymentDAO.addPayment(order, payment);
-    }
-
     @PostMapping("/processPayment")
     public boolean processPayment(@RequestBody Payment payment) {
         return paymentDAO.processPayment(payment);
