@@ -39,7 +39,7 @@ public class CartDAOImpl implements CartDAO {
 		Cart cart = cartRepository.findById(cartId).orElse(null);
 		Item itemExist = itemRepository.findByProduct_IdAndCart_Id(item.getProduct().getId(), cartId);
 
-		if (cart != null && itemExist != null) {
+		if (cart != null && itemExist == null) {
 			Product product = item.getProduct();
 			int quantity = item.getQuantity();
 			double itemAmount = product.getPrice() * quantity;
@@ -50,10 +50,12 @@ public class CartDAOImpl implements CartDAO {
 			cart.getItems().add(item);
 			cart.setTotalItem(cart.getTotalItem() + 1);
 			cart.setTotal(cart.getTotal() + itemAmount);
-			cartRepository.save(cart);
+			return cartRepository.save(cart);
+		}
+		else {
+			return null;
 		}
 
-		return cart;
 	}
 
 	@Override
@@ -75,13 +77,13 @@ public class CartDAOImpl implements CartDAO {
 				cartRepository.save(cart);
 			}
 		}
-
 		return cart;
+
 	}
 
 	@Override
 	public Cart getCustomerCart(int cusId) {
-		return cartRepository.findByCustomer_IdAAndStatus(cusId, "present");
+		return cartRepository.findByCustomer_IdAndStatus(cusId, "present");
 	}
 
 	@Override

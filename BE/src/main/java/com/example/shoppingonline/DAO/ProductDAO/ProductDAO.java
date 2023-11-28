@@ -1,6 +1,7 @@
 package com.example.shoppingonline.DAO.ProductDAO;
 
 import com.example.shoppingonline.Model.Order.Item;
+import com.example.shoppingonline.Model.Product.Book;
 import com.example.shoppingonline.Model.Product.Category;
 import com.example.shoppingonline.Model.Product.Product;
 
@@ -14,5 +15,9 @@ public interface ProductDAO {
 	List<Product> getProductByCategory(int categoryId);
 
 	List<Product> getProductByPrice(double p);
+
+	Product getProduct(int productId);
+	Product addProduct(Product product);
+	Product editBook(int productId, Product product);
 
 }

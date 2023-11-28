@@ -4,10 +4,13 @@ import com.example.shoppingonline.DAO.CartDAO.CartDAO;
 import com.example.shoppingonline.Model.Order.Cart;
 import com.example.shoppingonline.Model.Order.Item;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/cart")
+@CrossOrigin
 public class CartController {
 
     @Autowired
@@ -19,13 +22,23 @@ public class CartController {
     }
 
     @PostMapping("/add/{cartId}")
-    public Cart addCartItem(@PathVariable int cartId, @RequestBody Item item) {
-        return cartDAO.addCartItem(cartId, item);
+    public ResponseEntity<Cart> addCartItem(@PathVariable int cartId, @RequestBody Item item) {
+        Cart cart = cartDAO.addCartItem(cartId, item);
+        if (cart != null) {
+            return ResponseEntity.ok(cart);
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+        }
     }
 
     @PostMapping("/remove/{cartId}/{itemId}")
-    public Cart removeCartItem(@PathVariable int cartId, @PathVariable int itemId) {
-        return cartDAO.removeCartItem(cartId, itemId);
+    public ResponseEntity<Cart> removeCartItem(@PathVariable int cartId, @PathVariable int itemId) {
+        Cart cart = cartDAO.removeCartItem(cartId, itemId);
+        if (cart != null) {
+            return ResponseEntity.ok(cart);
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+        }
     }
 
     @GetMapping("/get/{cusId}")

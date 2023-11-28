@@ -1,6 +1,7 @@
 package com.example.shoppingonline.DAO.ProductDAO;
 
 import com.example.shoppingonline.Model.Order.Item;
+import com.example.shoppingonline.Model.Product.Book;
 import com.example.shoppingonline.Model.Product.Category;
 import com.example.shoppingonline.Model.Product.Product;
 
@@ -46,4 +47,16 @@ public class ProductDAOImpl implements ProductDAO {
 	public List<Product> getProductByPrice(double price) {
 		return productRepository.findByPriceLessThanEqual(price);
 	}
+
+	@Override
+	public Product getProduct(int productId) {
+		return productRepository.findById(productId).orElse(null);
+	}
+
+	@Override
+	public Product addProduct(Product product) {
+		return productRepository.save(product);
+	}
+
+
 }
