@@ -83,7 +83,11 @@ public class CartDAOImpl implements CartDAO {
 
 	@Override
 	public Cart getCustomerCart(int cusId) {
-		return cartRepository.findByCustomer_IdAndStatus(cusId, "present");
+		Cart cart = cartRepository.findByCustomer_IdAndStatus(cusId, "present");
+		if(cart == null) {
+			createCart(cusId);
+		}
+		return cart;
 	}
 
 	@Override
