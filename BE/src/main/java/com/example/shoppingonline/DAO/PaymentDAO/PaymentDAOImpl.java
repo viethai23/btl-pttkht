@@ -14,12 +14,11 @@ import org.springframework.stereotype.Repository;
 public class PaymentDAOImpl implements PaymentDAO {
 
 	private final PaymentRepository paymentRepository;
-	private final OrderRepository orderRepository;
+
 
 	@Autowired
-	public PaymentDAOImpl(PaymentRepository paymentRepository, OrderRepository orderRepository) {
+	public PaymentDAOImpl(PaymentRepository paymentRepository) {
 		this.paymentRepository = paymentRepository;
-		this.orderRepository = orderRepository;
 	}
 
 	@Override

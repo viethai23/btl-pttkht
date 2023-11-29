@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/payment")
+@CrossOrigin
 public class PaymentController {
 
     private final PaymentDAO paymentDAO;

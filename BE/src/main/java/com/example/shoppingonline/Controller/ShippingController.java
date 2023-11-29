@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/shipping")
+@CrossOrigin
 public class ShippingController {
 
     private final ShippingDAO shippingDAO;

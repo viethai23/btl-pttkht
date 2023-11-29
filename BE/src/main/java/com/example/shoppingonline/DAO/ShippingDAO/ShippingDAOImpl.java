@@ -17,12 +17,10 @@ import java.util.Optional;
 public class ShippingDAOImpl implements ShippingDAO {
 
 	private final ShippingRepository shippingRepository;
-	private final OrderRepository orderRepository;
 
 	@Autowired
-	public ShippingDAOImpl(ShippingRepository shippingRepository, OrderRepository orderRepository) {
+	public ShippingDAOImpl(ShippingRepository shippingRepository) {
 		this.shippingRepository = shippingRepository;
-		this.orderRepository = orderRepository;
 	}
 
 	@Override
