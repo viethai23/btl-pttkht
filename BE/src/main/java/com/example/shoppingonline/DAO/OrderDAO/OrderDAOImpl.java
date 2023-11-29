@@ -21,6 +21,8 @@ public class OrderDAOImpl implements OrderDAO {
 
 	@Override
 	public Order confirmOrder(Order order) {
+		order.getShipping().setStatus("ordered");
+		order.getPayment().setStatus("ordered");
 		order.getCart().setStatus("ordered");
 		order.setStatus("confirmed");
 		return orderRepository.save(order);

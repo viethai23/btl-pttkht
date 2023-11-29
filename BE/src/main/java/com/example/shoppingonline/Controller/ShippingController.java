@@ -1,6 +1,7 @@
 package com.example.shoppingonline.Controller;
 
 import com.example.shoppingonline.DAO.ShippingDAO.ShippingDAO;
+import com.example.shoppingonline.DTO.ShippingResponse;
 import com.example.shoppingonline.Model.Order.Order;
 import com.example.shoppingonline.Model.Order.Shipping;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +20,7 @@ public class ShippingController {
     }
 
     @PostMapping("/calculateCost")
-    public Shipping calculateCost(@RequestBody Shipping shipping) {
+    public ShippingResponse calculateCost(@RequestBody Shipping shipping) {
         return shippingDAO.calculateCost(shipping);
     }
 

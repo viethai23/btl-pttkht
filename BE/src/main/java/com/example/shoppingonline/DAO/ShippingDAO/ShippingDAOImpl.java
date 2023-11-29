@@ -1,5 +1,6 @@
 package com.example.shoppingonline.DAO.ShippingDAO;
 
+import com.example.shoppingonline.DTO.ShippingResponse;
 import com.example.shoppingonline.Model.Order.Order;
 import com.example.shoppingonline.Model.Order.Shipping;
 
@@ -24,10 +25,16 @@ public class ShippingDAOImpl implements ShippingDAO {
 	}
 
 	@Override
-	public Shipping calculateCost(Shipping s) {
+	public ShippingResponse calculateCost(Shipping s) {
 		s.setAmount(0);
 		s.setStatus("order");
-		return s;
+		ShippingResponse sp = new ShippingResponse();
+		sp.setAmount(s.getAmount());
+		sp.setStatus(s.getStatus());
+		sp.setMethod(s.getMethod());
+		sp.setShippingAddress(s.getShippingAddress());
+		sp.setReceiverPhone(s.getReceiverPhone());
+		return sp;
 	}
 
 	@Override

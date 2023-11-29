@@ -1,6 +1,7 @@
 package com.example.shoppingonline.Controller;
 
 import com.example.shoppingonline.DAO.PaymentDAO.PaymentDAO;
+import com.example.shoppingonline.DTO.PaymentResponse;
 import com.example.shoppingonline.Model.Order.Cart;
 import com.example.shoppingonline.Model.Order.Order;
 import com.example.shoppingonline.Model.Order.Payment;
@@ -22,7 +23,7 @@ public class PaymentController {
     }
 
     @PostMapping("/calculateCost")
-    public Payment calculateCost(@RequestBody PaymentCalculate paymentCalculate) {
+    public PaymentResponse calculateCost(@RequestBody PaymentCalculate paymentCalculate) {
         return paymentDAO.calculateCost(paymentCalculate.getCart(), paymentCalculate.getShipping(), paymentCalculate.getPayment());
     }
 
