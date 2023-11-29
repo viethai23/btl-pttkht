@@ -22,7 +22,7 @@ public class Order {
 	@Column(name = "id")
 	private int id;
 
-	@ManyToOne
+	@OneToOne()
 	@JoinColumn(name = "cart_id")
 	private Cart cart;
 

@@ -18,6 +18,5 @@ public interface ProductDAO {
 
 	Product getProduct(int productId);
 	Product addProduct(Product product);
-	Product editBook(int productId, Product product);
 
 }

@@ -6,9 +6,12 @@ import com.example.shoppingonline.Model.Order.Payment;
 import com.example.shoppingonline.Model.Order.Shipping;
 import com.example.shoppingonline.Model.User.Customer;
 
+import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.util.Date;
 import java.util.List;
 
+import com.example.shoppingonline.Repository.CartRepository;
 import com.example.shoppingonline.Repository.OrderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,14 +19,27 @@ import org.springframework.stereotype.Service;
 @Service
 public class OrderDAOImpl implements OrderDAO {
 
-	@Autowired
 	private OrderRepository orderRepository;
+
+	private CartRepository cartRepository;
+
+	public OrderDAOImpl(OrderRepository orderRepository, CartRepository cartRepository) {
+		this.orderRepository = orderRepository;
+		this.cartRepository = cartRepository;
+	}
 
 	@Override
 	public Order confirmOrder(Order order) {
 		order.getShipping().setStatus("ordered");
 		order.getPayment().setStatus("ordered");
-		order.getCart().setStatus("ordered");
+		LocalDateTime localDateTime = LocalDateTime.now();
+		Date curentTime = Date.from(localDateTime.atZone(ZoneId.systemDefault()).toInstant());
+		order.setOrderDate(curentTime);
+		Cart cart = cartRepository.findById(order.getCart().getId()).orElse(null);
+		if(cart != null) {
+			cart.setStatus("ordered");
+			cartRepository.save(cart);
+		}
 		order.setStatus("confirmed");
 		return orderRepository.save(order);
 	}
