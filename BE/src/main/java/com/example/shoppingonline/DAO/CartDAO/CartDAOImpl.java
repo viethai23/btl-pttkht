@@ -85,7 +85,7 @@ public class CartDAOImpl implements CartDAO {
 	public Cart getCustomerCart(int cusId) {
 		Cart cart = cartRepository.findByCustomer_IdAndStatus(cusId, "present");
 		if(cart == null) {
-			createCart(cusId);
+			cart = createCart(cusId);
 		}
 		return cart;
 	}
