@@ -21,8 +21,8 @@ public class PaymentController {
     }
 
     @PostMapping("/calculateCost")
-    public double calculateCost(@RequestBody Cart cart, @RequestBody Shipping shipping) {
-        return paymentDAO.calculateCost(cart, shipping);
+    public Payment calculateCost(@RequestBody Cart cart, @RequestBody Shipping shipping, @RequestBody Payment payment) {
+        return paymentDAO.calculateCost(cart, shipping, payment);
     }
 
     @DeleteMapping("/refundPayment/{paymentId}")

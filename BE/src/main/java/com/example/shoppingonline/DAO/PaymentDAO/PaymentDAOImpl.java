@@ -10,6 +10,8 @@ import com.example.shoppingonline.Repository.PaymentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import java.time.LocalDateTime;
+
 @Repository
 public class PaymentDAOImpl implements PaymentDAO {
 
@@ -22,8 +24,10 @@ public class PaymentDAOImpl implements PaymentDAO {
 	}
 
 	@Override
-	public double calculateCost(Cart c, Shipping sh) {
-		return c.getTotal() + sh.getAmount();
+	public Payment calculateCost(Cart c, Shipping sh, Payment p) {
+		p.setStatus("order");
+		p.setAmount(c.getTotal() + sh.getAmount());
+		return p;
 	}
 
 	@Override

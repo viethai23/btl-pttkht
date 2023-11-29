@@ -19,7 +19,7 @@ public class ShippingController {
     }
 
     @PostMapping("/calculateCost")
-    public double calculateCost(@RequestBody Shipping shipping) {
+    public Shipping calculateCost(@RequestBody Shipping shipping) {
         return shippingDAO.calculateCost(shipping);
     }
 

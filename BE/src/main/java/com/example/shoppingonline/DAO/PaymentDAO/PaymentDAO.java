@@ -7,7 +7,7 @@ import com.example.shoppingonline.Model.Order.Shipping;
 
 public interface PaymentDAO {
 
-	double calculateCost(Cart c, Shipping sh);
+	Payment calculateCost(Cart c, Shipping sh, Payment p);
 
 	boolean refundPayment(int paymentId);
 	boolean processPayment(Payment p);

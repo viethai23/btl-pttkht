@@ -24,8 +24,10 @@ public class ShippingDAOImpl implements ShippingDAO {
 	}
 
 	@Override
-	public double calculateCost(Shipping s) {
-		return 0;
+	public Shipping calculateCost(Shipping s) {
+		s.setAmount(0);
+		s.setStatus("order");
+		return s;
 	}
 
 	@Override

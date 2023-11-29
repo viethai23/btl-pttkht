@@ -5,7 +5,7 @@ import com.example.shoppingonline.Model.Order.Shipping;
 
 public interface ShippingDAO {
 
-	double calculateCost(Shipping s);
+	Shipping calculateCost(Shipping s);
 
 	boolean cancelShipping(Shipping s);
 }
