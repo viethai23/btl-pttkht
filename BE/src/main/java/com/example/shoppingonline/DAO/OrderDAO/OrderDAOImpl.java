@@ -40,6 +40,7 @@ public class OrderDAOImpl implements OrderDAO {
 			cart.setStatus("ordered");
 			cartRepository.save(cart);
 		}
+		order.setTotalAmount(order.getPayment().getAmount());
 		order.setStatus("confirmed");
 		return orderRepository.save(order);
 	}
